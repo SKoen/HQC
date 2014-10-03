@@ -26,8 +26,8 @@ class Manager {
     }
 
     protected function getPath($name) {       
-	    return '\\League\CLImate\\Settings\\' . $this->getClassName($name);
-	}
+        return '\\League\CLImate\\Settings\\' . $this->getClassName($name);
+    }
 
     protected function getClassName($name) {
 	return ucwords(str_replace('add_', '', $name));
@@ -39,10 +39,10 @@ class Manager {
 
     public function importSetting($setting) {
         $short_name = basename(str_replace('\\', '/', get_class($setting)));
-	    $method = 'importSetting'.$short_name;
-	    if (method_exists($this, $method)) {
-	        $this->$method($setting);
-	    }
+	$method = 'importSetting'.$short_name;
+	if (method_exists($this, $method)) {
+	    $this->$method($setting);
+	}
     }
 }
 ?>
