@@ -115,12 +115,13 @@ public class Collections {
             	obj = i.next();
             }
             while (pos++ < index);
-        } else {
-        	do {
-        	   obj = i.previous();
-        	} 
-        	while (--pos > index);
-    		}
+        }
+	else {
+            do {
+                obj = i.previous();
+            } 
+            while (--pos > index);
+    	}
         return obj;
-	}
     }
+}
