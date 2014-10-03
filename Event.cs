@@ -179,18 +179,18 @@ class Program
 
 	private static void ListEvents(string command)
 	{
-		int pipeIndex = command.IndexOf('|');
-		DateTime date = GetDate(command, "ListEvents");
-		string countString = command.Substring(pipeIndex + 1);
-		int count = int.Parse(countString);
-		events.ListEvents(date, count);
+	    int pipeIndex = command.IndexOf('|');
+	    DateTime date = GetDate(command, "ListEvents");
+	    string countString = command.Substring(pipeIndex + 1);
+	    int count = int.Parse(countString);
+	    events.ListEvents(date, count);
 	}      
 
 	private static void DeleteEvents(string command)
 	{
-		string title = 
+	    string title = 
             command.Substring("DeleteEvents".Length + 1);
-		events.DeleteEvents(title);
+	    events.DeleteEvents(title);
 	}
 
 	private static void AddEvent(string command)
