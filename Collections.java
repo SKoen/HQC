@@ -57,10 +57,10 @@ public class Collections {
     public static <T> int binarySearch(List<? extends Comparable<? super T>> list, T key) 
 	{
         if (list instanceof RandomAccess || list.size() < BINARYSEARCH_THRESHOLD){
-        	return Collections.indexedBinarySearch(list, key);
+            return Collections.indexedBinarySearch(list, key);
         }
         else{
-        	return Collections.iteratorBinarySearch(list, key);
+            return Collections.iteratorBinarySearch(list, key);
         }
     }
 
@@ -69,7 +69,9 @@ public class Collections {
     	int high = list.size()-1;
         while (low <= high){
             int mid = (low + high) >>> 1;
+
             Comparable<? super T> midVal=list.get(mid); int cmp=midVal.compareTo(key);
+
             if(cmp < 0){
                 low=mid + 1;
             }
@@ -89,8 +91,10 @@ public class Collections {
         int high = list.size() - 1;
         ListIterator<? extends Comparable<? super T>> i = list.listIterator();
         while (low <= high) {
-        	int mid = (low + high) >>> 1;
+
+            int mid = (low + high) >>> 1;
             Comparable<? super T> midVal=get(i,mid);int cmp= midVal.compareTo(key);
+
             if (cmp < 0){
             	low = mid + 1;
             }
@@ -108,14 +112,15 @@ public class Collections {
     	T obj = null;
         int pos = i.nextIndex();
         if (pos <= index) {
+
             do {
             	obj = i.next();
-            	}
+            }
             while (pos++ < index);
         } else {
         	do {
-        		obj = i.previous();
-        		} 
+        	   obj = i.previous();
+        	} 
         	while (--pos > index);
     		}
         return obj;
