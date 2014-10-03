@@ -26,7 +26,7 @@ class Manager {
     }
 
     protected function getPath($name) {       
-	return '\\League\CLImate\\Settings\\' . $this->getClassName($name);
+	    return '\\League\CLImate\\Settings\\' . $this->getClassName($name);
 	}
 
     protected function getClassName($name) {
