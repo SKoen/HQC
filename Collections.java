@@ -32,7 +32,7 @@ public class Collections {
     
     @SuppressWarnings("unchecked")
     
-    public static <T extends Comparable<? super T>> void sort(List<T> list){
+    public static <T extends Comparable<? super T>> void sort(List<T> list) {
     	Object[] a = list.toArray();
         Arrays.sort(a);
         ListIterator<T>i = list.listIterator();
@@ -48,18 +48,17 @@ public class Collections {
     	Arrays.sort(a, (Comparator)c);
     	ListIterator<T> i = list.listIterator();
     }
-        for (int j = 0; j < a.length; j++)
-		{
+        for (int j = 0; j < a.length; j++) {
             i.next();
             i.set((T)a[j]);
         }
     }
-    public static <T> int binarySearch(List<? extends Comparable<? super T>> list, T key) 
-	{
-        if (list instanceof RandomAccess || list.size() < BINARYSEARCH_THRESHOLD){
+    public static <T> int binarySearch(List<? extends Comparable<? super T>> list, T key) {
+
+        if (list instanceof RandomAccess || list.size() < BINARYSEARCH_THRESHOLD) {
             return Collections.indexedBinarySearch(list, key);
         }
-        else{
+        else {
             return Collections.iteratorBinarySearch(list, key);
         }
     }
@@ -67,15 +66,15 @@ public class Collections {
     private static <T> int indexedBinarySearch(List<? extends Comparable<? super T>> list, T key) {
     	int low = 0;
     	int high = list.size()-1;
-        while (low <= high){
+        while (low <= high) {
             int mid = (low + high) >>> 1;
 
             Comparable<? super T> midVal=list.get(mid); int cmp=midVal.compareTo(key);
 
-            if(cmp < 0){
+            if(cmp < 0) {
                 low=mid + 1;
             }
-            else if (cmp > 0){
+            else if (cmp > 0) {
                 high = mid - 1;
             }
             else {
@@ -85,8 +84,7 @@ public class Collections {
         return -(low + 1);  // key not found
     }
 
-    private static <T>int iteratorBinarySearch(List<? extends Comparable<? super T>> list, T key)
-    {
+    private static <T>int iteratorBinarySearch(List<? extends Comparable<? super T>> list, T key) {
         int low = 0;
         int high = list.size() - 1;
         ListIterator<? extends Comparable<? super T>> i = list.listIterator();
@@ -95,13 +93,13 @@ public class Collections {
             int mid = (low + high) >>> 1;
             Comparable<? super T> midVal=get(i,mid);int cmp= midVal.compareTo(key);
 
-            if (cmp < 0){
+            if (cmp < 0) {
             	low = mid + 1;
             }
-            else if (cmp > 0){
+            else if (cmp > 0) {
             	high = mid - 1;
             }
-            else{
+            else {
             	return mid; // key found
             }
          }
