@@ -49,7 +49,7 @@ class Event:IComparable
             {
                 toString.Append(" | " + location);
             }
-	        return toString.ToString();
+	    return toString.ToString();
 	}
 }
 
@@ -60,31 +60,31 @@ class Program
 	{
 	    public static void EventAdded()
 	    {
-            output.Append("Event added\n");
+                output.Append("Event added\n");
             }
 
 	    public static void EventDeleted(int x)
 	    {
-            if (x == 0)
-            {
-                NoEventsFound();
-            }
-            else 
-            {
-                output.AppendFormat("{0} events deleted\n", x); 
-            }
+                if (x == 0)
+                {
+                    NoEventsFound();
+                }
+                else 
+                {
+                    output.AppendFormat("{0} events deleted\n", x); 
+                }
 	    }
 
 	    public static void NoEventsFound()
             {
-            output.Append("No events found\n");
+                output.Append("No events found\n");
             }
 
 	    public static void PrintEvent(Event eventToPrint)
             {
 		if(eventToPrint!=null)
                 {
-		output.Append(eventToPrint+"\n");
+		    output.Append(eventToPrint+"\n");
 		}
 	    }
 	}
@@ -128,9 +128,10 @@ class Program
                         break;
                         }
 
-		    Messages.PrintEvent(eventToShow);
-		    showed++;
-			}
+		        Messages.PrintEvent(eventToShow);
+		        showed++;
+		    }
+
                     if (showed == 0)
                     { 
                         Messages.NoEventsFound();
@@ -142,37 +143,37 @@ class Program
 
 	static void Main(string[] args)
         {
-        do
-        {
-            bool flag = ExecuteNextCommand();
-        }
-        while (flag == true);
+            do
+            {
+                bool flag = ExecuteNextCommand();
+            }
+            while (flag == true);
 
-		Console.WriteLine(output);
+	    Console.WriteLine(output);
 	}
 
 	private static bool ExecuteNextCommand()
 	{
-		string command = Console.ReadLine();
-		if(command[0] == 'A')
-        {
-            AddEvent(command);
-            return true;
-        }
-		if(command[0] == 'D')
-        {
-            DeleteEvents(command);
-            return true;
-        }
-		if(command[0] == 'L')
-        {
-            ListEvents(command);
-            return true;
-        }
-		if(command[0] == 'E')
-        {
-            return false;
-        }
+	    string command = Console.ReadLine();
+	    if(command[0] == 'A')
+            {
+                AddEvent(command);
+                return true;
+            }
+	    if(command[0] == 'D')
+            {
+                DeleteEvents(command);
+                return true;
+            }
+	    if(command[0] == 'L')
+            {
+                ListEvents(command);
+                return true;
+            }
+	    if(command[0] == 'E')
+            {
+                return false;
+            }
 		return false;
 	}
 
@@ -194,13 +195,13 @@ class Program
 
 	private static void AddEvent(string command)
 	{
-		DateTime date;
-        string title;
-        string location;
+	    DateTime date;
+            string title;
+            string location;
 
-		GetParameters(command, "AddEvent", out date, out title, out location);	
+	    GetParameters(command, "AddEvent", out date, out title, out location);	
 	
-		events.AddEvent(date, title, location);
+	    events.AddEvent(date, title, location);
 	}
 
 	private static void GetParameters(string commandForExecution,
@@ -209,26 +210,27 @@ class Program
         out string eventTitle,
         out string eventLocation)
 	{
-		dateAndTime = GetDate(commandForExecution, commandType);
-		int firstPipeIndex = commandForExecution.IndexOf('|');
+	    dateAndTime = GetDate(commandForExecution, commandType);
+	    int firstPipeIndex = commandForExecution.IndexOf('|');
 		
 		
-		int lastPipeIndex = commandForExecution.LastIndexOf('|');
-		if (firstPipeIndex == lastPipeIndex)
-        { 
-            eventTitle = 
-				commandForExecution.Substring(firstPipeIndex+ 1).Trim();
-			eventLocation = "";
-		}
-		else
-        {
-			eventTitle =
+	    int lastPipeIndex = commandForExecution.LastIndexOf('|');
+	    if (firstPipeIndex == lastPipeIndex)
+            { 
+                eventTitle = 
+			commandForExecution.Substring(firstPipeIndex+ 1).Trim();
+	        eventLocation = "";
+	    }
+	    else
+            {
+		eventTitle =
                 commandForExecution.Substring(firstPipeIndex + 1, 
                 lastPipeIndex - firstPipeIndex - 1).Trim();
 
 		eventLocation = commandForExecution.Substring(lastPipeIndex + 1).Trim();
-        }
+            }
 	}
+
 	private static DateTime GetDate(string command, string commandType)
 	{           
 	    DateTime date = 
